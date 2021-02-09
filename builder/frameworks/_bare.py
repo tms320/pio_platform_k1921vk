@@ -10,7 +10,7 @@ board = env.BoardConfig()
 mcu = board.get("build.mcu", "")
 f_ext = board.get("build.f_ext", "")
 clk_select = board.get("build.clk_select", "")
-clk_select_def = {"pll":"SYSCLK_PLL","internal":"SYSCLK_OSI","external":"SYSCLK_OSE"}
+clk_select_def = {"pll":"SYSCLK_PLL","internal":"SYSCLK_OSI","external":"SYSCLK_OSE","custom":""}
 SDK_DIR = platform.get_package_dir("framework-k1921vk-sdk")
 DEVICE_DIR =  os.path.join(SDK_DIR,"platform","Device","NIIET",mcu)
 
