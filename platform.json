@@ -1,0 +1,65 @@
+{
+  "name": "k1921vk",
+  "title": "K1921VK",
+  "description": "NIIET K1921VK series",
+  "homepage": "https://niiet.ru/product/%d0%ba1921%d0%b2%d0%ba01%d1%821/",
+  "license": "Apache-2.0",
+  "keywords": [
+      "dev-platform",
+      "ARM",
+      "Cortex-M",
+      "K1921VK",
+      "NIIET"
+  ],
+  "engines": {
+    "platformio": "^5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "version": "1.0.0",
+  "frameworks": {
+    "k1921vk_sdk": {
+      "package": "framework-k1921vk-sdk",
+      "script": "builder/frameworks/k1921vk-sdk.py",
+      "description": "The K1921VKx SDK is a set of software development tools for NIIET microcontrollers",
+      "homepage": "https://bitbucket.org/niietcm4/k1921vkx_sdk/src/develop/",
+      "title": "NIIET k1921vk SDK"
+    }
+  },
+  "packages": {
+    "framework-k1921vk-sdk":{
+      "type": "framework",
+      "version": "~1.6.0"
+    },
+    "toolchain-gccarmnoneeabi": {
+      "type": "toolchain",
+      "owner": "platformio",
+      "version": ">=1.60301.0,<1.80000.0"
+    },
+    "framework-cmsis": {
+      "type": "framework",
+      "optional": true,
+      "owner": "platformio",
+      "version": "~2.50501.0"
+    },
+    "tool-openocd": {
+      "type": "uploader",
+      "optional": true,
+      "owner": "platformio",
+      "version": "~2.1000.0"
+    },
+    "tool-jlink": {
+      "type": "uploader",
+      "optional": true,
+      "owner": "platformio",
+      "version": "^1.63208.0"
+    },
+    "tool-cmake": {
+      "optional": true,
+      "owner": "platformio",
+      "version": "~3.16.0"
+    }
+  }
+}

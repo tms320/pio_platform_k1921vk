@@ -1,0 +1,37 @@
+{
+  "build": {
+    "core": "K1921VK",
+    "cpu": "cortex-m4f",
+    "extra_flags": "",
+    "f_ext": "12000000L",
+    "clk_select": "pll",
+    "mcu": "K1921VK01T"
+  },
+  "debug": {
+    "jlink_device": "K1921VK01T",
+    "openocd_target": "k1921vk01t",
+    "svd_path": "K1921VK01T.svd"
+  },
+  "frameworks": [
+    "k1921vk_sdk"
+  ],
+  "name": "Generic K1921VK01T",
+  "upload": {
+    "disable_flushing": false,
+    "maximum_ram_size": 196608,
+    "maximum_size": 1048576,
+    "offset_address":"0x00000000",
+    "protocol": "stlink",
+    "protocols": [
+      "jlink_jtag",
+      "jlink_swd",
+      "stlink"
+    ],
+    "require_upload_port": true,
+    "use_1200bps_touch": false,
+    "wait_for_upload_port": false
+  },
+
+  "url": "https://niiet.ru/product/%d0%ba%d1%84%d0%b4%d0%bb-441461-003/",
+  "vendor": "NIIET"
+}
