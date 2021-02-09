@@ -2,7 +2,7 @@
   "name": "k1921vk",
   "title": "K1921VK",
   "description": "NIIET K1921VK series",
-  "homepage": "https://niiet.ru/product/%d0%ba1921%d0%b2%d0%ba01%d1%821/",
+  "homepage": "https://github.com/kenny5660/pio_platform_k1921vk",
   "license": "Apache-2.0",
   "keywords": [
       "dev-platform",
