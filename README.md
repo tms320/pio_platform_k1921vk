@@ -44,5 +44,5 @@ build_flags = -DRETARGET
   * `internal` - define SYSCLK_OSI, use internal clock source. K1921VK01T: 5 Mhz, K1921VK028: 16 Mhz, K1921VK035 8 Mhz
   * `external` - define SYSCLK_OSE, use external clock source
   * `custom` - nothing define, you should configure clock by youself
-* `debug_tool` - you can use for debug `stlink`, `jlink_jtag`, `jlink_swd`
-* `upload_tool` - you can use for upload `stlink`, `jlink_jtag`, `jlink_swd`
+* `debug_tool` - you can use for debug `stlink`
+* `upload_tool` - you can use for upload `stlink`

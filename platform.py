@@ -28,22 +28,7 @@ class K1921vkPlatform(PlatformBase):
         build_core = variables.get(
             "board_build.core", board_config.get("build.core", "arduino"))
         build_mcu = variables.get("board_build.mcu", board_config.get("build.mcu", ""))
-
         frameworks = variables.get("pioframework", [])
-        # configure J-LINK tool
-        jlink_conds = [
-            "jlink" in variables.get(option, "")
-            for option in ("upload_protocol", "debug_tool")
-        ]
-        if board:
-            jlink_conds.extend([
-                "jlink" in board_config.get(key, "")
-                for key in ("debug.default_tools", "upload.protocol")
-            ])
-        jlink_pkgname = "tool-jlink"
-        if not any(jlink_conds) and jlink_pkgname in self.packages:
-            del self.packages[jlink_pkgname]
-
         return PlatformBase.configure_default_packages(self, variables,
                                                        targets)
 
@@ -67,7 +52,7 @@ class K1921vkPlatform(PlatformBase):
         if "tools" not in debug:
             debug['tools'] = {}
 
-        # BlackMagic, J-Link, ST-Link
+        # J-Link, ST-Link
         for link in upload_protocols:
             if link not in upload_protocols or link in debug['tools']:
                 continue

@@ -9,7 +9,6 @@
     "mcu": "K1921VK01T"
   },
   "debug": {
-    "jlink_device": "K1921VK01T",
     "openocd_target": "k1921vk01t",
     "svd_path": "K1921VK01T.svd"
   },
@@ -24,8 +23,6 @@
     "offset_address":"0x00000000",
     "protocol": "stlink",
     "protocols": [
-      "jlink_jtag",
-      "jlink_swd",
       "stlink"
     ],
     "require_upload_port": true,
