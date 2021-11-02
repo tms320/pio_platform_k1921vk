@@ -45,9 +45,9 @@ env.Append(
     ],
 
     CPPDEFINES=[
-        ("OSECLK_VAL", str(f_ext)),
+        ("OSECLK_VAL", str(f_ext)),# OSECLK value in Hz (0 if disconnected)
         (mcu),# MCU name
-        ("MCUNAME",mcu),# OSECLK value in Hz (0 if disconnected)
+        ("MCUNAME",mcu),
         (clk_select_def[clk_select]), # SYSCLK source: PLL, OSI, OSE
     ],
 
