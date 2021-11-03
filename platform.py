@@ -59,7 +59,7 @@ class K1921vkPlatform(PlatformBase):
 
             server_args = ["-s", "$PACKAGE_DIR/scripts"]
             server_args.extend([
-                    "-s", os.path.join(SDK_DIR,"tools","openocd","openocd-snippets",mcu.lower())
+                    "-s", os.path.join(SDK_DIR or "","tools","openocd","openocd-snippets",mcu.lower())
                 ])
             if debug.get("openocd_board"):
                 server_args.extend([
