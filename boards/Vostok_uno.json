@@ -6,20 +6,23 @@
     "f_ext": "12000000L",
     "f_cpu": "100000000L",
     "clk_select": "pll",
-    "mcu": "K1921VK01T"
+    "mcu": "K1921VK035",
+    "variant": "vostok_uno_035",
+    "board": "VOSTOK_UNO_035"
   },
   "debug": {
-    "openocd_target": "k1921vk01t",
-    "svd_path": "K1921VK01T.svd"
+    "openocd_target": "K1921vk035",
+    "svd_path": "K1921VK035.svd"
   },
   "frameworks": [
-    "k1921vk_sdk"
+    "k1921vk_sdk",
+    "arduino"
   ],
-  "name": "kfdl441546",
+  "name": "Vostok UNO",
   "upload": {
     "disable_flushing": false,
-    "maximum_ram_size": 196608,
-    "maximum_size": 1048576,
+    "maximum_ram_size": 16384,
+    "maximum_size": 65536,
     "offset_address":"0x00000000",
     "protocol": "stlink",
     "protocols": [
@@ -30,6 +33,6 @@
     "wait_for_upload_port": false
   },
 
-  "url": "https://niiet.ru/product/%d0%ba%d1%84%d0%b4%d0%bb-441461-003/",
-  "vendor": "NIIET"
+  "url": "https://niiet.ru/product/1921%D0%B2%D0%BA035/",
+  "vendor": "Vostok"
 }

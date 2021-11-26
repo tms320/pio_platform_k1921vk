@@ -8,12 +8,13 @@ env = DefaultEnvironment()
 platform = env.PioPlatform()
 board = env.BoardConfig()
 mcu = board.get("build.mcu", "")
+variant = board.get("build.variant")
 
 env.SConscript("_bare.py")
-
-SDK_DIR = platform.get_package_dir("framework-k1921vk-sdk")
+ARDUINO_PACKADGE_DIR = platform.get_package_dir("framework-k1921vk-arduino")
+ARDUINO_CORE_DIR = os.path.join(ARDUINO_PACKADGE_DIR,"cores","arduino")
+SDK_DIR = os.path.join(ARDUINO_PACKADGE_DIR,"cores","arduino","framework-k1921vk-sdk")
 DEVICE_DIR =  os.path.join(SDK_DIR,"platform","Device","NIIET",mcu)
-DEVICE_RETARGET_DIR = os.path.join(SDK_DIR,"platform","retarget","Template",mcu)
 DEVICE_SDK_DIR = ""
 if mcu == "K1921VK01T":
     DEVICE_SDK_DIR=os.path.join(SDK_DIR,"platform","niietcm4_pd")
@@ -22,9 +23,18 @@ elif mcu == "K1921VK028":
 elif mcu == "K1921VK035":
     DEVICE_SDK_DIR=os.path.join(SDK_DIR,"platform","plib035")
 
+VARIANT_DIR = os.path.join(ARDUINO_PACKADGE_DIR,"variants",variant)
+
 env.Append(
         CPPPATH=[
-            os.path.join(DEVICE_SDK_DIR, "inc")
+            os.path.join(DEVICE_SDK_DIR, "inc"),
+            os.path.join(VARIANT_DIR),
+            os.path.join(ARDUINO_CORE_DIR)
+        ],
+        CPPDEFINES=[
+        ("F_CPU", str(board.get("build.f_cpu"))),
+        ("MCU_"+mcu),# MCU name
+        ("ARDUINO_"+board.get("build.board")),
         ],
     )
 
@@ -63,18 +73,25 @@ env.BuildSources(
 )
 
 #
-# Compile retarget sources
+# Compile arduino core sources
 #
 
-# sources_path = DEVICE_RETARGET_DIR
-# env.BuildSources(
-#     os.path.join("$BUILD_DIR", "retarget_conf"), sources_path,
-#     src_filter=[
-#         "+<retarget_conf.c>"]
-# )
-# sources_path = os.path.join(SDK_DIR,"platform","retarget")
-# env.BuildSources(
-#     os.path.join("$BUILD_DIR", "retarget"), sources_path,
-#     src_filter=[
-#         "+<retarget.c>"]
-# )
+sources_path = os.path.join(ARDUINO_CORE_DIR)
+env.BuildSources(
+    os.path.join("$BUILD_DIR", "arduino_core"), sources_path,
+    src_filter=[
+        "+<*>",
+        "-<framework-k1921vk-sdk*>"]
+
+)
+
+#
+# Compile arduino core sources
+#
+
+sources_path = os.path.join(VARIANT_DIR)
+env.BuildSources(
+    os.path.join("$BUILD_DIR", "arduino_variant"), sources_path,
+    src_filter=[
+        "+<*>"]
+)

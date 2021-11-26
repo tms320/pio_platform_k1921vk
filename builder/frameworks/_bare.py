@@ -11,15 +11,6 @@ mcu = board.get("build.mcu", "")
 f_ext = board.get("build.f_ext", "")
 clk_select = board.get("build.clk_select", "")
 clk_select_def = {"pll":"SYSCLK_PLL","internal":"SYSCLK_OSI","external":"SYSCLK_OSE","custom":""}
-SDK_DIR = platform.get_package_dir("framework-k1921vk-sdk")
-DEVICE_DIR =  os.path.join(SDK_DIR,"platform","Device","NIIET",mcu)
-
-env.Append(
-    CPPPATH=[
-        os.path.join(DEVICE_DIR, "Include"),
-        os.path.join( SDK_DIR, "platform","CMSIS","Core","Include")
-    ]
-)
 
 env.Append(
     ASFLAGS=[
@@ -41,7 +32,21 @@ env.Append(
     ],
 
     CXXFLAGS=[
-        "-std=c++11"
+        "-std=c++11",
+        "-fno-exceptions",
+        "-mthumb",
+        "-c",
+        "-g",
+        "-Os",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-mlong-calls",
+        "-nostdlib", 
+        "-fno-threadsafe-statics",
+        "-fno-rtti",
+        "-fno-exceptions",
+        "-fno-use-cxa-atexit",
+        "-MMD"
     ],
 
     CPPDEFINES=[
@@ -49,6 +54,7 @@ env.Append(
         (mcu),# MCU name
         ("MCUNAME",mcu),
         (clk_select_def[clk_select]), # SYSCLK source: PLL, OSI, OSE
+        ("_GNU_SOURCE")
     ],
 
     LINKFLAGS=[
@@ -67,8 +73,7 @@ env.Append(
     LIBS=["c", "gcc", "m", "stdc++"]
 )
 
-if not board.get("build.ldscript", ""):
-    env.Replace(LDSCRIPT_PATH=os.path.join(DEVICE_DIR, "Source","GCC","%s.ld"%mcu))
+
 
 # copy CCFLAGS to ASFLAGS (-x assembler-with-cpp mode)
 #env.Append(ASFLAGS=env.get("CCFLAGS", [])[:])
