@@ -38,7 +38,7 @@
   "packages": {
     "framework-k1921vk-sdk":{
       "type": "framework",
-      "version": "~1.6.2"
+      "version": "~1.7.0"
     },
     "framework-k1921vk-arduino":{
       "type": "framework",
