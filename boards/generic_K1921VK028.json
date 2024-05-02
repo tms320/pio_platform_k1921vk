@@ -1,0 +1,35 @@
+{
+  "build": {
+    "core": "K1921VK",
+    "cpu": "cortex-m4f",
+    "extra_flags": "",
+    "f_ext": "12000000L",
+    "f_cpu": "200000000L",
+    "clk_select": "pll",
+    "mcu": "K1921VK028"
+  },
+  "debug": {
+    "openocd_target": "K1921VK028",
+    "svd_path": "K1921VK028.svd"
+  },
+  "frameworks": [
+    "k1921vk_sdk",
+    "freertos"
+  ],
+  "name": "Generic K1921VK028",
+  "upload": {
+    "disable_flushing": false,
+    "maximum_ram_size": 16384,
+    "maximum_size": 65536,
+    "offset_address": "0x00000000",
+    "protocol": "stlink",
+    "protocols": [
+      "stlink"
+    ],
+    "require_upload_port": true,
+    "use_1200bps_touch": false,
+    "wait_for_upload_port": false
+  },
+  "url": "https://niiet.ru/product/1921%D0%B2%D0%BA028/",
+  "vendor": "Generic"
+}
