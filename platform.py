@@ -26,7 +26,7 @@ class K1921vkPlatform(PlatformBase):
         board = variables.get("board")
         board_config = self.board_config(board)
         build_core = variables.get(
-            "board_build.core", board_config.get("build.core", "arduino"))
+            "board_build.core", board_config.get("build.core", "k1921vk_sdk"))
         build_mcu = variables.get("board_build.mcu", board_config.get("build.mcu", ""))
         frameworks = variables.get("pioframework", [])
         return PlatformBase.configure_default_packages(self, variables,
