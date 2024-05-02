@@ -26,23 +26,12 @@
       "description": "The K1921VKx SDK is a set of software development tools for NIIET microcontrollers",
       "homepage": "https://github.com/kenny5660/framework-k1921vk-sdk",
       "title": "NIIET k1921vk SDK"
-    },
-    "arduino": {
-      "package": "framework-k1921vk-arduino",
-      "script": "builder/frameworks/arduino.py",
-      "description": "The arduino framework for NIIET microcontrollers",
-      "homepage": "http://arduino.cc",
-      "title": "Arduino"
     }
   },
   "packages": {
     "framework-k1921vk-sdk":{
       "type": "framework",
       "version": "~1.7.1"
-    },
-    "framework-k1921vk-arduino":{
-      "type": "framework",
-      "version": "~1.0.0"
     },
     "toolchain-gccarmnoneeabi": {
       "type": "toolchain",
