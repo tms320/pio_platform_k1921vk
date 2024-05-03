@@ -44,7 +44,7 @@ class K1921vkPlatform(PlatformBase):
         return result
 
     def _add_default_debug_tools(self, board):
-        SDK_DIR = self.get_package_dir("framework-k1921vk-sdk")
+        #SDK_DIR = self.get_package_dir("framework-k1921vk-sdk")
         mcu = board.get("build.mcu", "")
         debug = board.manifest.get("debug", {})
         upload_protocols = board.manifest.get("upload", {}).get(
@@ -58,9 +58,6 @@ class K1921vkPlatform(PlatformBase):
                 continue
 
             server_args = ["-s", "$PACKAGE_DIR/scripts"]
-            server_args.extend([
-                    "-s", os.path.join(SDK_DIR or "","tools","openocd","openocd-snippets",mcu.lower())
-                ])
             if debug.get("openocd_board"):
                 server_args.extend([
                     "-f", "board/%s.cfg" % debug.get("openocd_board")
@@ -68,16 +65,23 @@ class K1921vkPlatform(PlatformBase):
             else:
                 assert debug.get("openocd_target"), (
                     "Missed target configuration for %s" % board.id)
+                transport = debug.get('transport',"swd")
                 server_args.extend([
-                    "-f", "connect_%s.cfg" % link
+                    "-f", "interface/%s.cfg" % link,
+                    "-c", "transport select %s" % (transport if link!="stlink" else "hla_"+transport),
+                    "-f", "target/%s.cfg" % debug.get("openocd_target")
                 ])
                 server_args.extend(debug.get("openocd_extra_args", []))
+            
             debug['tools'][link] = {
                 "server": {
-                    "package": "tool-openocd",
-                    "executable": "bin/openocd",
+                    "package": "tool-openocd-k1921vk",
+                    "executable": join("bin", "openocd.exe" if system()=="Windows" else "openocd"),
                     "arguments": server_args
                 }
             }
+            debug['tools'][link]['onboard'] = link in debug.get("onboard_tools", [])
+            debug['tools'][link]['default'] = link in debug.get("default_tools", [])
+        
         board.manifest['debug'] = debug
         return board
