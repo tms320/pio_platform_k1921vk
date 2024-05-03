@@ -14,6 +14,7 @@
 
 import json
 import os
+from os.path import isdir, isfile, join
 
 from platform import system
 
